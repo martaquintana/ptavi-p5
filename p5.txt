@@ -206,7 +206,7 @@ No, Padding esta a False en los RTP.
 
 * ¿Cuál es la periodicidad de los paquetes (en origen; nota que la captura es en destino)?
 
-Timestamp-->bytes --> 160bytes --> (64000 bps*(160*8bit)) 50 paquetes por segundo --> 20ms
+Timestamp-->bytes --> 160bytes --> (64000 bps*(160*8bit))= 50 paquetes por segundo --> Periodo de 20ms
 
 * ¿Cuántos bits/segundo se envı́an?
 
@@ -228,8 +228,7 @@ Esto también se puede ver mejor en Telephony RTP.
 No se pierde ningún paquete, fijándonos en los números de secuencia, no se salta ningún número y todos van en orden.
 Y en Telephony RTP lost en ambos flujos es 0% de paquetes se han perdido.
 
-* ¿Cuál es el valor máximo del delta? ¿Y qué es lo que significa el
-valor de delta?
+* ¿Cuál es el valor máximo del delta? ¿Y qué es lo que significa el valor de delta?
 
 maxdelta para H.261 (Video) --> 1290.479 ms 
 maxdelta para G.711 (Audio) --> 1290.444 ms 
@@ -242,7 +241,7 @@ Para G.711 (Audio) --> jittermedio = 119.635 ; jittermax = 42.500;
 
 ¿Qué quiere decir eso? ¿Crees que estamos ante una conversación de calidad?
 
-No es una conversación de calidad porque el jitter del video es muy grande.
+No es una conversación de calidad porque el jitter del video es muy grande y en I/O Grafics no se ve una comunicación lineal, sino que hay mucha variación y los paquetes no llegan continuamente.
 
 
 
@@ -265,7 +264,7 @@ Que hay más trafico en la red, hay latencia y los paquetes han llegado mucho m�
 
 * ¿Es comparable el cambio en el valor de jitter con el del delta?
 ¿Cual es más grande?
-El jitter que es la variación del retardo, por lo tanto cambia el tiempo entre paquetes.
+El jitter que es la variación del retardo, por lo tanto cambia el tiempo entre paquetes(delta).
 El de la delta es mucho más grande. (Del paquete 247: jitter=38.82ms y delta= 554.74ms)
 
 
@@ -331,11 +330,11 @@ Hecho.
 20. Observa las diferencias en el inicio de la conversación entre el entorno del laboratorio y el del ejercicio anterior5:
 *¿Se utilizan DNS y STUN? ¿Por qué?
 
-No, porque estoy utilizando mi ip publica.
+No para esta comunicación, porque estoy utilizando mi ip publica.
 
 *¿Son diferentes el registro y la descripción de la sesión?
 
-Tienen las mismas características a grandes rasgos.
+Tienen las mismas características a grandes rasgos (cambian algunos parámetros de las cabeceras pero porque uno es video y audio y en este caso es solo audio y en otro formato).
 
 [Al terminar el ejercicio es recomendable hacer commit de los ficheros modificados]
 
@@ -347,7 +346,8 @@ Solo 2 de audio de ida y de vuelta.
 
 * ¿Cuál es su periodicidad?
 
-Timestamp-->bytes --> 320bytes 
+(Timestamp son bytes) --> 320bytes 
+Speex puede tener una tasa de bits/seg variable, si suponemos que tiene como en la pregunta anterior 64Kbps --> 64000bps * (320*8)= 25 paquetes por segundo. --> 40ms
 
 * ¿Cuánto es el valor máximo del delta y los valores medios y máximo del jitter?
 
@@ -357,17 +357,18 @@ El jitter: 212.128.255.8--> meanjitter= 0.209 y maxjitter=5.180
 
 * ¿Podrías reproducir la conversación desde Wireshark? ¿Cómo?
 
-Sí, en Telephony VoIPCalls, seleccionando la llamada y dando a play streams podriamos reproducirlo, pero en este ordenador nos da un error de que el codec no se soporta o el stream esta vacío.
+Sí, en Telephony VoIPCalls, seleccionando la llamada y dando a play streams podríamos reproducirlo, pero en este ordenador nos da un error de que el codec no se soporta o el stream esta vacío.
 
-Comprueba que poniendo un valor demasiado pequeño para el buffer de jitter, la conversación puede no tener la calidad necesaria. 
+Comprueba que poniendo un valor demasiado pequeño para el buffer de jitter, la conversación puede no tener la calidad necesaria. --> Tardará más en cargar los datos.
+ 
 *¿Sabrías decir qué tipo de servicio ofrece sip:music@iptel.org?
 
-Nos ofrece musica.
+Cuando llamamos, nos ofrece musica.
 
 
 
-
-22.Filtra por los paquetes SIP de la captura y guarda únicamente los paquetes SIP como p5.pcapng. Abre el fichero guardado para cerciorarte de que lo has hecho bien. Deberás añadirlo al repositorio.
+22.Filtra por los paquetes SIP de la captura y guarda únicamente los paquetes SIP como p5.pcapng. Abre el fichero guardado para cerciorarte de que lo has hecho bien. Deberás añadirlo al repositorio. 
+Hecho.
 [Al terminar el ejercicio es recomendable hacer commit de los ficheros modificados]
 [Al terminar la práctica, realiza un push para sincronizar tu repositorio GitHub]
 
