@@ -197,7 +197,7 @@ Para H.261 (Video)--> jittermedio = 183.096 ; jittermax = 153.240;
 Para G.711 (Audio) --> jittermedio = 119.635 ; jittermax = 42.500;
 
 ¿Qué quiere decir eso? ¿Crees que estamos ante una conversación de calidad?
-
+No porque el jitter es muy grande.
 ???????????????????????????????????????????????????????????????????????????????????????????????????????
 
 
@@ -265,36 +265,42 @@ Como he dicho antes, en el Expires, ahora es 0 y antes era 3600.
 
 Captura de una sesión SIP
 
-17. Dirı́gete a la web http://www.ekiga.net con el navegador y créate una cuenta. Lanza Ekiga, y configúralo con los datos de la cuenta que te acabas de crear. Comprueba que estás conectado (En la barra al final de la ventana podrás ver “Connected”). Al terminar, cierra completamente Ekiga.
+17.Dirígete a la web de IPTel3con el navegador y créate una cuenta SIP.
+Recibirás un correo electrónico de confirmación en la dirección que has indicado al registrarte. Hecho.
 
-18. Captura una sesión SIP de una conversación con el número SIP sip:500@ekigan.net. Recuerda que has de comenzar a capturar tramas antes de arrancar Ekiga para ver todo el proceso3 .
+18.  Lanza Ekiga, y configúralo con los datos de la cuenta que te acabas de crear. Para ello, puedes ir al menú “Editar” y seleccionar “Cuentas”. Tendrás que rellenar los campos de manera similar a lo que se puede ver en la imagen a continuación (recuerda poner tu nombre de usuario en lugar de “grex”). Comprueba que estás conectado (En la barra al final de la ventana podrás ver “Connected”). Al terminar, cierra completamente Ekiga. Hecho.
 
-19. Observa las diferencias en el inicio de la conversación entre el entorno del laboratorio y el del ejercicio anterior4 :
-* ¿Se utilizan DNS y STUN? ¿Por qué?
-
-* ¿Son diferentes el registro y la descripción de la sesión?
-
-
-20. Identifica las diferencias existentes entre esta conversación y la conversación anterior:
-
-* ¿Cuántos flujos tenemos?
-
-* ¿Cuál es su periodicidad?
-
-* ¿Cuánto es el valor máximo del delta y los valores medios y máximo del jitter?
-
-* ¿Podrı́as reproducir la conversación desde Wireshark? ¿Cómo? Comprueba que poniendo un valor demasiado pequeño para el buffer de jitter, la conversación puede no tener la calidad necesaria.
+19. Captura una sesión SIP de una conversación con el número SIP sip:music@sip.iptel.org.
+Recuerda que has de comenzar a capturar tramas antes de arrancar Ekiga para ver todo el proceso4. Hecho.
 
 
-* ¿Sabrı́as decir qué tipo de servicio ofrece sip:500@ekiga.net?
+20. Observa las diferencias en el inicio de la conversación entre el entorno del laboratorio y el del ejercicio anterior5:
+*¿Se utilizan DNS y STUN? ¿Por qué?
+No, porque estoy utilizando mi ip publica.
+*¿Son diferentes el registro y la descripción de la sesión?
+Tienen las mismas características a grandes rasgos.
 
 [Al terminar el ejercicio es recomendable hacer commit de los ficheros modificados]
 
 
 
-21. Filtra por los paquetes SIP de la captura y guarda únicamente los paquetes SIP como p5.pcapng. Abre el fichero guardado para cerciorarte de que lo has hecho bien. Deberás añadirlo al repositorio.
+21. Identifica las diferencias existentes entre esta conversación y la conversación
+anterior:
+* ¿Cuántos flujos tenemos?
+Solo 2 de audio de ida y de vuelta.
+* ¿Cuál es su periodicidad?
 
+* ¿Cuánto es el valor máximo del delta y los valores medios y máximo del jitter?
+Max delta es 39.862 en nuestra ip 212.128.255.8 y max delta en 212.79.111.155 es 37.313.
+El jitter: 212.128.255.8--> meanjitter= 0.209 y maxjitter=5.180
+	   212.79.111.155--> meanjitter= 0.257 y maxjitter= 2.514
 
+* ¿Podrías reproducir la conversación desde Wireshark? ¿Cómo?
+Sí, en Telephony VoIPCalls, seleccionando la llamada y dando a play streams podriamos reproducirlo, pero en este ordenador nos da un error de que el codec no se soporta o el stream esta vacío.
+Comprueba que poniendo un valor demasiado pequeño para el buffer de jitter, la conversación puede no tener la calidad necesaria.
+* ¿Sabrías decir qué tipo de servicio ofrece sip:music@iptel.org?
+
+22.Filtra por los paquetes SIP de la captura y guarda únicamente los paquetes SIP como p5.pcapng. Abre el fichero guardado para cerciorarte de que lo has hecho bien. Deberás añadirlo al repositorio.
 [Al terminar el ejercicio es recomendable hacer commit de los ficheros modificados]
 [Al terminar la práctica, realiza un push para sincronizar tu repositorio GitHub]
 
